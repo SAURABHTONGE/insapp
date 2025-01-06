@@ -15,6 +15,8 @@ import com.springbootinstitudemanegmentsystem.servicei.IMSserviceI;
 @Controller
 public class IMSController {
 
+int i;
+	
 	@Autowired
 	IMSserviceI imss;
 	
