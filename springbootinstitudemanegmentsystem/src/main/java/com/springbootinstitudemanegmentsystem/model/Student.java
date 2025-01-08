@@ -1,10 +1,12 @@
 package com.springbootinstitudemanegmentsystem.model;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.OneToOne;
 
 @Entity
@@ -17,9 +19,17 @@ public class Student {
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private Batch b;
-	
+	@Lob
+	@Column(length = 999999999)
+	private String photo;
 	
 
+	public String getPhoto() {
+		return photo;
+	}
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
 	public int getId() {
 		return id;
 	}

@@ -94,9 +94,12 @@
 
     <div class="form-container">
         <h1>Student Form</h1>
-        <form action="save" method="POST">
+        <form action="save" method="post" enctype="multipart/form-data">
             <label for="name">Student Name:</label>
             <input type="text" id="name" name="name" required>
+            
+             <label for="photo">Image:</label>
+            <input type="file" id="photo" name="photo" required>
             
             <label for="bname">Batch Name:</label>
             <select id="b.bname" name="b.bname" required>

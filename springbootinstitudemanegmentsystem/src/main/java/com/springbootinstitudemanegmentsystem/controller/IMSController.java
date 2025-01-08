@@ -1,5 +1,7 @@
 package com.springbootinstitudemanegmentsystem.controller;
 
+import java.io.IOException;
+import java.util.Base64;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,14 +10,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.springbootinstitudemanegmentsystem.model.Batch;
+import com.springbootinstitudemanegmentsystem.model.Course;
+import com.springbootinstitudemanegmentsystem.model.Faculty;
 import com.springbootinstitudemanegmentsystem.model.Student;
 import com.springbootinstitudemanegmentsystem.servicei.IMSserviceI;
 
 @Controller
 public class IMSController {
 
-int i;
+
 	
 	@Autowired
 	IMSserviceI imss;
@@ -30,7 +36,30 @@ int i;
 		return "adddata";
 	}
 	@RequestMapping("/save")
-	public String save(@ModelAttribute Student s,Model m) {
+	public String save(@RequestParam("name") String name,
+			@RequestParam("photo") MultipartFile photo,
+			@RequestParam("b.bname") String bname,
+			@RequestParam("b.f.fname") String fname,
+			@RequestParam("b.f.c.cname") String cname,Model m) throws IOException {
+		
+		Course c=new Course();
+		c.setCname(cname);
+		
+		Faculty f=new Faculty();
+		f.setFname(fname);
+		f.setC(c);
+		
+		Batch b=new Batch();
+		b.setBname(bname);
+		b.setF(f);
+		
+		Student s=new Student();
+		s.setB(b);
+		s.setName(name);
+        String image = Base64.getEncoder().encodeToString(photo.getBytes());		
+
+		s.setPhoto(image);
+		
 		imss.save(s);
 		
 		return "login";

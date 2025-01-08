@@ -85,10 +85,11 @@
                 <tr>
                      <th>Student ID</th>
                     <th>Student Name</th>
+                    <th>Image</th>
                     <th>Batch Name</th>
                     <th>Faculty Name</th>
                     <th>Course Name</th>
-                    <th>ACTION</th>
+                     <th>ACTION</th>
                 </tr>
             </thead>
             <tbody>
@@ -97,9 +98,11 @@
                     <tr>
                         <td>${s.id}</td>
                         <td>${s.name}</td>
+                         <td><img alt="" src="data:image/jpeg;base64,${s.photo}" width="100" height="100"></td>
                         <td>${s.b.bname}</td>
                         <td>${s.b.f.fname}</td>
                         <td>${s.b.f.c.cname}</td>
+                       
                          <td><a href="edit?id=${s.id}">EDIT</a>||
                          <a  href="delete?id=${s.id}">DELETE</a></td>
                     </tr>
